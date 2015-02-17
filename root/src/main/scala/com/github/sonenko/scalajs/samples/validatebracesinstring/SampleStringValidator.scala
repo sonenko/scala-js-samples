@@ -23,11 +23,11 @@ object SampleStringValidator {
   def check(str: String): Boolean = {
     val opposite: Map[Char, Char] = Map('{' -> '}', '(' -> ')', '[' -> ']')
     def doCheck(str: List[Char], expected: List[Char]): Boolean = (str, expected) match {
-      case (Nil, exp) => exp.length == 0
+      case (Nil, exp) => exp.isEmpty
       case ((x@('{' | '[' | '(')) :: xs, e) => doCheck(xs, opposite(x) :: e)
       case (('}' | ']' | ')') :: xs, Nil) => false
       case ((x@('}' | ']' | ')')) :: xs, eHead :: eTail) => x == eHead && doCheck(xs, eTail)
-      case (_ :: xs, e) => doCheck(xs.toList, e)
+      case (_ :: xs, e) => doCheck(xs, e)
     }
     doCheck(str.toList, Nil)
   }
