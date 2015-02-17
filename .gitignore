@@ -1,0 +1,33 @@
+target/
+projectFilesBackup
+project/target/**
+.DS_Store
+.idea*
+.java-version
+
+#user defined conf
+application.conf
+cristina.conf
+
+### Scala template
+*.class
+*.log
+
+# sbt specific
+.cache
+.history
+.lib/
+dist/*
+target/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+
+camel-dir
+camel-dir/*
+
