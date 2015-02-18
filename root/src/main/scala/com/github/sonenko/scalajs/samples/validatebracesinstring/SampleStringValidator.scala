@@ -41,7 +41,7 @@ object SampleStringValidator {
 
     def onClick(): Unit ={
       val str = g.prompt("enter string to test", """var a = {"a": ["hello", "world", function(){}]}""").toString
-      g.alert(check(str))
+      g.alert(checkTailRec(str))
     }
   }
 
@@ -72,4 +72,13 @@ object SampleStringValidator {
     }
     expected.isEmpty
   }
+
+  @annotation.tailrec final def checkTailRec(x: String, ps: List[Int] = Nil, i: Int = 0): Boolean =
+    if (i == x.length) ps.isEmpty else x.charAt(i) match {
+      case '(' | '{' | '[' => checkTailRec(x, i :: ps, i + 1)
+      case ')' => if (!ps.isEmpty && x.charAt(ps.head) == '(') checkTailRec(x, ps.tail, i + 1) else false
+      case ']' => if (!ps.isEmpty && x.charAt(ps.head) == '[') checkTailRec(x, ps.tail, i + 1) else false
+      case '}' => if (!ps.isEmpty && x.charAt(ps.head) == '{') checkTailRec(x, ps.tail, i + 1) else false
+      case _ => checkTailRec(x, ps, i + 1)
+    }
 }
