@@ -5,7 +5,7 @@ import scala.scalajs.js.JSApp
 import com.github.sonenko.scalajs.samples.validatebracesinstring.SampleStringValidator
 
 object Main extends JSApp {
-  def main(): Unit = ()
-
-  SampleStringValidator.init()
+  def main(): Unit = {
+    SampleStringValidator.init()
+  }
 }
