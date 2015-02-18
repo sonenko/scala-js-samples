@@ -37,9 +37,9 @@ import js.Dynamic.{ global => g }
  */
 object SampleStringValidator {
   def init(): Unit = {
-    jQuery("#validate-braces-in-string").click{onClick _}
+    jQuery("body").append("<button>Validate braces in string</button>").click(onClick _)
 
-    def onClick(): Unit ={
+    def onClick(): Unit = {
       val str = g.prompt("enter string to test", """var a = {"a": ["hello", "world", function(){}]}""").toString
       g.alert(checkTailRec(str))
     }
