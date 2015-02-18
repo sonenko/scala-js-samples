@@ -4,6 +4,37 @@ import scala.scalajs.js
 import org.scalajs.jquery._
 import js.Dynamic.{ global => g }
 
+/**
+ * checks if str valid line for IDE(for example)
+ * check("{}") => true
+ * check("}{") => false
+ * check("[{]}") => false
+ * --- pure JS realization example
+ * function check(str) {
+ *   var enters = ['{', '(', '['],
+ *     exits = ['}', ')', ']'],
+ *     opposite = (function(){
+ *         var res = {}, i = 0;
+ *         for (; i < enters.length; i++) { res[enters[i]] = exits[i]; }
+ *         return res;
+ *       }()),
+ *     expected = [],
+ *     key = null,
+ *     char = null;
+ *
+ *   for (key in str) {
+ *     char = str[key];
+ *     if (enters.indexOf(char) >= 0) {
+ *       expected.unshift(opposite[char]);
+ *     } else if (exits.indexOf(char) >= 0) {
+ *       if (expected.length === 0 || char != expected[0]) return false;
+ *       else expected.shift();
+ *     }
+ *   }
+ *
+ *   return true;
+ * }
+ */
 object SampleStringValidator {
   def init(): Unit = {
     jQuery("#validate-braces-in-string").click{onClick _}
@@ -14,12 +45,6 @@ object SampleStringValidator {
     }
   }
 
-  /**
-   * checks if str valid line for IDE(for example)
-   * "{}" => true
-   * "}{" => false
-   * "[{]}" => false
-   */
   def check(str: String): Boolean = {
     val opposite: Map[Char, Char] = Map('{' -> '}', '(' -> ')', '[' -> ']')
     def doCheck(str: List[Char], expected: List[Char]): Boolean = (str, expected) match {
@@ -32,33 +57,6 @@ object SampleStringValidator {
     doCheck(str.toList, Nil)
   }
 
-  /**
-   * --- pure JS realization example
-   * function check(str) {
-   *   var enters = ['{', '(', '['],
-   *     exits = ['}', ')', ']'],
-   *     opposite = (function(){
-   *         var res = {}, i = 0;
-   *         for (; i < enters.length; i++) { res[enters[i]] = exits[i]; }
-   *         return res;
-   *       }()),
-   *     expected = [],
-   *     key = null,
-   *     char = null;
-   *
-   *   for (key in str) {
-   *     char = str[key];
-   *     if (enters.indexOf(char) >= 0) {
-   *       expected.unshift(opposite[char]);
-   *     } else if (exits.indexOf(char) >= 0) {
-   *       if (expected.length === 0 || char != expected[0]) return false;
-   *       else expected.shift();
-   *     }
-   *   }
-   *
-   *   return true;
-   * }
-   */
   def checkInLoop(str: String): Boolean = {
     val opposite: Map[Char, Char] = Map('{' -> '}', '(' -> ')', '[' -> ']')
     var expected: List[Char] = Nil
