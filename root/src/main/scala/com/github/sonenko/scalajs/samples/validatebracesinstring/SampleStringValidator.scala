@@ -47,12 +47,14 @@ object SampleStringValidator {
 
   def check(str: String): Boolean = {
     val opposite: Map[Char, Char] = Map('{' -> '}', '(' -> ')', '[' -> ']')
+    val enters = opposite.keys
+    val exits = opposite.values
     def doCheck(str: List[Char], expected: List[Char]): Boolean = (str, expected) match {
       case (Nil, exp) => exp.isEmpty
-      case ((x@('{' | '[' | '(')) :: xs, e) => doCheck(xs, opposite(x) :: e)
-      case (('}' | ']' | ')') :: xs, Nil) => false
-      case ((x@('}' | ']' | ')')) :: xs, eHead :: eTail) => x == eHead && doCheck(xs, eTail)
-      case (_ :: xs, e) => doCheck(xs, e)
+      case (x::xs, e) if enters.exists(_ == x) => doCheck(xs, opposite(x) :: e)
+      case (x::xs, Nil) if exits.exists(_ == x) => false
+      case (x::xs, eHead::eTail) if exits.exists(_ == x) => x == eHead && doCheck(xs, eTail)
+      case (_::xs, e) => doCheck(xs, e)
     }
     doCheck(str.toList, Nil)
   }
@@ -62,13 +64,12 @@ object SampleStringValidator {
     var expected: List[Char] = Nil
     for { x <- str} {
       (x, expected) match {
-        case ('{' | '[' | '(', e) => expected = opposite(x) :: expected
+        case ('{' | '[' | '(', e) => expected = opposite(x) :: e
         case ('}' | ']' | ')', Nil) => return false
-        case ('}' | ']' | ')', eHead :: eTail) if x != eHead => return false
-        case ('}' | ']' | ')', eHead :: eTail) => expected = eTail
+        case ('}' | ']' | ')', eHead :: eTail) => if (x != eHead) return false else expected = eTail
         case _ =>
       }
     }
-    true
+    expected.isEmpty
   }
 }
