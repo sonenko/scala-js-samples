@@ -10,32 +10,26 @@ import js.Dynamic.{ global => g }
  * check("}{") => false
  * check("[{]}") => false
  * --- pure JS realization example
- * function check(str) {
- *   var enters = ['{', '(', '['],
- *     exits = ['}', ')', ']'],
- *     opposite = (function(){
- *         var res = {}, i = 0;
- *         for (; i < enters.length; i++) {
- *           res[enters[i]] = exits[i];
- *         }
- *         return res;
- *       }()),
- *     expected = [],
- *     key = null,
- *     char = null;
- *
- *   for (key in str) {
- *     char = str[key];
- *     if (enters.indexOf(char) >= 0) {
- *       expected.unshift(opposite[char]);
- *     } else if (exits.indexOf(char) >= 0) {
- *       if (expected.length === 0 || char != expected[0]) return false;
- *       else expected.shift();
- *     }
- *   }
- *
- *   return expected.length === 0;
- * }
+  function check(str) {
+    "use strict";
+
+    var  opposite = {'{': '}', '(': ')', '[': ']'},
+      expected = [],
+      i = 0,
+      char = null;
+
+    for (; i < str.length; i++) { // no in additional var `len`, coz it will not add performance
+      char = str[i];
+      if (char === '{' || char === '(' || char === '[') {
+        expected.push(opposite[char]);
+      } else if (char === '}' || char === ')' || char === ']') {
+        if (expected.length === 0 || char !== expected[0]) return false;
+        else expected.pop();
+      }
+    }
+
+    return expected.length === 0;
+  }
  */
 object SampleStringValidator {
   def init(): Unit = {
