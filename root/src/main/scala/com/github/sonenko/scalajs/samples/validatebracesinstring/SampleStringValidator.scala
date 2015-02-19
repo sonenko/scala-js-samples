@@ -15,7 +15,9 @@ import js.Dynamic.{ global => g }
  *     exits = ['}', ')', ']'],
  *     opposite = (function(){
  *         var res = {}, i = 0;
- *         for (; i < enters.length; i++) { res[enters[i]] = exits[i]; }
+ *         for (; i < enters.length; i++) {
+ *           res[enters[i]] = exits[i];
+ *         }
  *         return res;
  *       }()),
  *     expected = [],
@@ -32,7 +34,7 @@ import js.Dynamic.{ global => g }
  *     }
  *   }
  *
- *   return true;
+ *   return expected.length === 0;
  * }
  */
 object SampleStringValidator {
