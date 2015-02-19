@@ -18,7 +18,7 @@ import js.Dynamic.{ global => g }
       i = 0,
       char = null;
 
-    for (; i < str.length; i++) { // no in additional var `len`, coz it will not add performance
+    for (; i < str.length; i++) { // no need in additional var `len`, coz it will not add performance
       char = str[i];
       if (char === '{' || char === '(' || char === '[') {
         expected.push(opposite[char]);
