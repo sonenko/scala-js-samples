@@ -1,3 +1,5 @@
+Basically project to play / compare ScalaJS vs pure Javascript.
+
 ## 1. compile examples
 Open terminal. and execute command `sbt`. This will start *sbt* command prompt
 run `~root/fastOptJS`. It will generate javascript from scala code and put it to 
