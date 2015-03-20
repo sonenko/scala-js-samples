@@ -11,7 +11,7 @@ root/fastOptJS
 `{project_dir}/root/target/scala-2.11/root-fastopt.js`.
 
 ## 2. see result
-Open `{project root}/web/index.html` in browser and play with app(press buttons)
+Open `{project root}/web/index.html` in browser and play with app, press buttons, disable browser cache if you modifiyng scala project. 
 
 ## 3. run tests
 ```bash
