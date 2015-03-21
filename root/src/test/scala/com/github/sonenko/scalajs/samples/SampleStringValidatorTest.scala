@@ -1,4 +1,4 @@
-package com.github.sonenko.scalajs.samples.validatebracesinstring
+package com.github.sonenko.scalajs.samples
 
 import utest._
 import utest.framework.Test

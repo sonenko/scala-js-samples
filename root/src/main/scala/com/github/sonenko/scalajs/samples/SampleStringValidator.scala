@@ -1,8 +1,8 @@
-package com.github.sonenko.scalajs.samples.validatebracesinstring
+package com.github.sonenko.scalajs.samples
 
-import scala.scalajs.js
 import org.scalajs.jquery._
-import js.Dynamic.{ global => g }
+import scala.scalajs.js
+import scala.scalajs.js.Dynamic.{global => g}
 
 /**
  * checks if str valid line for IDE(for example)
@@ -33,12 +33,13 @@ import js.Dynamic.{ global => g }
  */
 object SampleStringValidator {
   def init(): Unit = {
-    jQuery("body").append("<button>Validate braces in string</button>").click(onClick _)
-
     def onClick(): Unit = {
       val str = g.prompt("enter string to test", """var a = {"a": ["hello", "world", function(){}]}""").toString
       g.alert(checkTailRec(str))
     }
+
+    val el = jQuery("<div><button>Validate braces in string</button></div>").click(onClick _)
+    jQuery("body").append(el)
   }
 
   def check(str: String): Boolean = {

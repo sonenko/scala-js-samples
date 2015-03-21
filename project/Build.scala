@@ -25,7 +25,7 @@ object Build extends Build {
     .settings(libraryDependencies ++= Seq(
       "org.scala-js" %%% "scalajs-dom" % "0.8.0",
       "be.doeraene" %%% s"scalajs-jquery" % "0.8.0",
-      "com.lihaoyi" %%% "utest" % "0.3.0" % "test"
+      "com.lihaoyi" %%% "utest" % "0.3.1" % "test"
     ))
     .settings(commonSettings:_*)
     .enablePlugins(ScalaJSPlugin)
