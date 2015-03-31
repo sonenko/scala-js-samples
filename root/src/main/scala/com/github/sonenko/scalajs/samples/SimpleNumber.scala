@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
+package com.github.sonenko.scalajs.samples
 
-  <script src="libs/jquery/jquery-2.1.3.min.js"></script>
-  <script src="../root/target/scala-2.11/root-fastopt.js"></script>
-  <script src="../root/target/scala-2.11/root-launcher.js"></script>
+class SimpleNumber {
 
-
-<script>
+  /**
+   * pure JS realization example
   function simpleNumbers(count) {
     var acc = [],
         i = 1;
@@ -32,7 +24,7 @@
 
     return acc;
   }
+   */
 
-</script>
-</body>
-</html>
+
+}
