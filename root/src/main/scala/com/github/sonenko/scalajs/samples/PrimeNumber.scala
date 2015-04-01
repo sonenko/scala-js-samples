@@ -2,7 +2,7 @@ package com.github.sonenko.scalajs.samples
 
 import scala.annotation.tailrec
 
-object SimpleNumber {
+object PrimeNumber {
 
   /**
    * pure JS realization example
@@ -28,8 +28,8 @@ object SimpleNumber {
   }
    */
 
-  def simpleNumbersStream(count: Int): Vector[Int] = {
-    require(count >=0, "can generate vector of negative length")
+  def primeNumbersStream(count: Int): Vector[Int] = {
+    require(count >=0, "can not generate vector of negative length")
     def stream(x: Int, acc: List[Int]): Stream[Int] =
       if (acc.exists(y => x % y == 0 && y != 1)) stream(x + 1, acc)
       else x #:: stream(x + 1, x :: acc)
@@ -37,8 +37,8 @@ object SimpleNumber {
   }
 
 
-  def simpleNumbersTailRec(count: Int): Vector[Int] = {
-    require(count >=0, "can generate vector of negative length")
+  def primeNumbersTailRec(count: Int): Vector[Int] = {
+    require(count >=0, "can not generate vector of negative length")
     @tailrec
     def rec(x: Int, acc: Vector[Int]): Vector[Int] =
       if (acc.length >= count) acc

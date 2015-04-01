@@ -6,7 +6,7 @@ import utest.util.Tree
 import scala.util.Try
 
 
-object SimpleNumberF {
+object PrimeNumberF {
   def test(name: String, function: Int => Vector[Int]): Tree[Test] = {
 
     TestSuite {
@@ -36,10 +36,10 @@ object SimpleNumberF {
   }
 }
 
-object SimpleNumbersStreamTest extends TestSuite {
-  val tests = SimpleNumberF.test("simpleNumbersStream", SimpleNumber.simpleNumbersStream)
+object PrimeNumbersStreamTest extends TestSuite {
+  val tests = PrimeNumberF.test("primeNumbersStream", PrimeNumber.primeNumbersStream)
 }
 
-object SimpleNumbersTailRecTest extends TestSuite {
-  val tests = SimpleNumberF.test("simpleNumbersTailRec", SimpleNumber.simpleNumbersTailRec)
+object PrimeNumbersTailRecTest extends TestSuite {
+  val tests = PrimeNumberF.test("primeNumbersTailRec", PrimeNumber.primeNumbersTailRec)
 }
