@@ -6,5 +6,6 @@ object Main extends JSApp {
   def main(): Unit = {
     SampleStringValidator.init()
     SampleSort.init()
+    PrimeNumber.init()
   }
 }

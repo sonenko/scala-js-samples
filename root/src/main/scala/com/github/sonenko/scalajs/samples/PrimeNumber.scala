@@ -1,8 +1,21 @@
 package com.github.sonenko.scalajs.samples
 
+import org.scalajs.jquery._
 import scala.annotation.tailrec
+import scala.scalajs.js
+import scala.scalajs.js.Dynamic.{global => g}
 
 object PrimeNumber {
+
+  def init(): Unit = {
+    def onClick(): Unit = {
+      val str = g.prompt("input simple numbers count", """10""").toString
+      g.alert(primeNumbersTailRec(str.toInt).toList.toString)
+    }
+
+    val el = jQuery("<div><button>Prime Numbers</button></div>").click(onClick _)
+    jQuery("body").append(el)
+  }
 
   /**
    * pure JS realization example

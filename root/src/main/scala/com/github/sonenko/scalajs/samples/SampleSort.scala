@@ -7,12 +7,12 @@ import scala.scalajs.js.Dynamic.{global => g}
 object SampleSort {
 
   def init(): Unit = {
-    def onClick1(): Unit = {
+    def onClick(): Unit = {
       val str = g.prompt("inport string to sort", """3201""").toString
       g.alert(sortBobbleImperative(str.toList).mkString)
     }
 
-    val el = jQuery("<div><button>Bubble sort</button></div>").click(onClick1 _)
+    val el = jQuery("<div><button>Bubble sort</button></div>").click(onClick _)
     jQuery("body").append(el)
   }
 
